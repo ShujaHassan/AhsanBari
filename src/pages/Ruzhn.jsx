@@ -1,91 +1,115 @@
-import React from 'react';
-import SectionTitle from "../components/SectionTitle";
-
-// Dummy artists data
-const artists = [
-  {
-    name: "Ali Khan",
-    image: "/images/artist1.jpg",
-    instagram: "#",
-    facebook: "#",
-    youtube: "#",
-  },
-  {
-    name: "Sara Ahmed",
-    image: "/images/artist2.jpg",
-    instagram: "#",
-    facebook: "#",
-    youtube: "#",
-  },
-  {
-    name: "Omar Malik",
-    image: "/images/artist3.jpg",
-    instagram: "#",
-    facebook: "#",
-    youtube: "#",
-  },
-];
+import * as Icons from 'lucide-react';
+import PageLayout from '../components/ui/PageLayout';
+import SectionTitle from '../components/SectionTitle';
+import ScrollReveal from '../components/ui/ScrollReveal';
+import Button from '../components/ui/Button';
+import { artists, ruzhnServices } from '../data/artists';
 
 export default function Ruzhn() {
   return (
-    <section className="bg-black py-32 px-6 min-h-screen flex flex-col items-center text-center">
+    <PageLayout>
       <SectionTitle
         title="Ruzhn"
         subtitle="Music production, artist development & sound identity"
       />
 
-      <p className="text-gray-300 text-lg leading-relaxed max-w-3xl">
-        Ruzhn is a creative music production house producing original music,
-        nurturing artists, and delivering high-quality audio for albums,
-        films, and live performances.
-      </p>
-
-      <ul className="mt-8 space-y-3 text-gray-400">
-        <li>• Artist Recording & Production</li>
-        <li>• Original Composition</li>
-        <li>• Sound Design & Mixing</li>
-        <li>• Artist Development</li>
-      </ul>
-
-      {/* NEW Heading for Artists */}
-      <div className="mt-20 text-center">
-        <h2 className="text-4xl md:text-5xl font-heading text-white">
-          Our Featured Artists
-        </h2>
-        <p className="mt-3 text-gray-400 max-w-xl mx-auto">
-          Meet the talented musicians shaping the sound of Ruzhn
+      {/* Intro */}
+      <ScrollReveal>
+        <p className="text-foreground-muted text-base md:text-lg leading-relaxed max-w-3xl mx-auto text-center mb-20">
+          Ruzhn is a creative music production house producing original music,
+          nurturing artists, and delivering high-quality audio for albums, films,
+          and live performances.
         </p>
+      </ScrollReveal>
+
+      {/* Services cards */}
+      <div className="grid sm:grid-cols-2 gap-6 md:gap-8 mb-24 md:mb-32">
+        {ruzhnServices.map((service, i) => {
+          const Icon = Icons[service.icon] || Icons.Music;
+          return (
+            <ScrollReveal key={service.title} delay={i * 0.08}>
+              <div className="p-8 md:p-10 bg-surface-elevated border border-border card-glow h-full">
+                <Icon size={28} className="text-accent mb-6" strokeWidth={1.5} />
+                <h3 className="font-heading text-xl md:text-2xl text-foreground">
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-sm text-foreground-muted leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            </ScrollReveal>
+          );
+        })}
       </div>
 
-      {/* Artists Grid */}
-      <div className="mt-12 grid md:grid-cols-3 gap-8 justify-items-center">
-        {artists.map((artist, index) => (
-          <div
-            key={index}
-            className="bg-dark2 rounded-lg overflow-hidden w-64 hover:scale-105 transition-transform"
-          >
-            <img
-              src={artist.image}
-              alt={artist.name}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4 text-center">
-              <h3 className="text-white font-heading text-lg mb-2">{artist.name}</h3>
-              <div className="flex justify-center space-x-3">
-                <a href={artist.instagram} className="text-gray-400 hover:text-gold">
-                  Instagram
-                </a>
-                <a href={artist.facebook} className="text-gray-400 hover:text-gold">
-                  Facebook
-                </a>
-                <a href={artist.youtube} className="text-gray-400 hover:text-gold">
-                  YouTube
-                </a>
+      {/* Featured Artists */}
+      <ScrollReveal>
+        <div className="text-center mb-14">
+          <h2 className="font-heading text-3xl md:text-4xl text-foreground">
+            Featured Artists
+          </h2>
+          <p className="mt-3 text-foreground-muted max-w-xl mx-auto">
+            Meet the talented musicians shaping the sound of Ruzhn
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-20">
+        {artists.map((artist, i) => (
+          <ScrollReveal key={artist.id} delay={i * 0.1}>
+            <article className="group bg-surface-elevated border border-border overflow-hidden card-glow">
+              <div
+                className={`aspect-[4/3] bg-gradient-to-br ${artist.gradient} flex items-center justify-center`}
+              >
+                <span className="font-heading text-5xl text-white/30 group-hover:text-white/50 transition-colors">
+                  {artist.initials}
+                </span>
               </div>
-            </div>
-          </div>
+
+              <div className="p-6 text-center">
+                <h3 className="font-heading text-xl text-foreground">{artist.name}</h3>
+                <p className="text-xs text-accent mt-1 tracking-wide uppercase">
+                  {artist.role}
+                </p>
+
+                <div className="mt-4 flex justify-center gap-4">
+                  {[
+                    { label: 'Instagram', href: artist.instagram },
+                    { label: 'Facebook', href: artist.facebook },
+                    { label: 'YouTube', href: artist.youtube },
+                  ].map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      className="text-xs text-foreground-muted hover:text-accent transition-colors uppercase tracking-wider"
+                      aria-label={`${artist.name} on ${social.label}`}
+                    >
+                      {social.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </article>
+          </ScrollReveal>
         ))}
       </div>
-    </section>
+
+      {/* Inquiry CTA */}
+      <ScrollReveal>
+        <div className="text-center p-12 md:p-16 border border-accent/30 bg-surface-muted">
+          <h3 className="font-heading text-2xl md:text-3xl text-foreground">
+            Ready to Create?
+          </h3>
+          <p className="mt-3 text-foreground-muted text-sm max-w-md mx-auto">
+            Partner with Ruzhn for production, composition, and artist development.
+          </p>
+          <div className="mt-8">
+            <Button to="/contact" size="lg">
+              Start a Project
+            </Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </PageLayout>
   );
 }

@@ -1,4 +1,272 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
+/* ─── Design tokens ─────────────────────────────────────────── */
+@theme {
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --color-accent: #c9a227;
+  --color-accent-light: #e8d48b;
+  --color-accent-dark: #9a7b1a;
+
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border-color);
+  --color-border-subtle: var(--border-subtle);
+}
+
+/* ─── Light theme (default) ─────────────────────────────────── */
+:root {
+  --surface: #faf8f5;
+  --surface-elevated: #ffffff;
+  --surface-muted: #f0ede8;
+  --foreground: #0f0f0f;
+  --foreground-muted: #5c5c5c;
+  --border-color: rgba(15, 15, 15, 0.12);
+  --border-subtle: rgba(15, 15, 15, 0.06);
+  --nav-bg: rgba(250, 248, 245, 0.82);
+  --hero-overlay: rgba(15, 15, 15, 0.55);
+  --glass-shadow: 0 8px 32px rgba(15, 15, 15, 0.08);
+}
+
+/* ─── Dark theme ────────────────────────────────────────────── */
+[data-theme='dark'] {
+  --surface: #0a0a0a;
+  --surface-elevated: #141414;
+  --surface-muted: #1a1a1a;
+  --foreground: #f5f3ef;
+  --foreground-muted: #a0a0a0;
+  --border-color: rgba(245, 243, 239, 0.1);
+  --border-subtle: rgba(245, 243, 239, 0.05);
+  --nav-bg: rgba(10, 10, 10, 0.78);
+  --hero-overlay: rgba(0, 0, 0, 0.65);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── Base styles ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--surface);
+  color: var(--foreground);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* ─── Typography utilities ──────────────────────────────────── */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ─── Custom scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 3px;
+}
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection {
+  background-color: var(--color-accent);
+  color: #0a0a0a;
+}
+
+/* ─── Focus visible (accessibility) ─────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ─── Skip link ─────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-accent);
+  color: #0a0a0a;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ─── Glassmorphism navbar ──────────────────────────────────── */
+.glass-nav {
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ─── Hero mesh gradient background ─────────────────────────── */
+.hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(201, 162, 39, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 60% 80%, rgba(100, 80, 30, 0.12) 0%, transparent 50%),
+    var(--surface);
+}
+
+[data-theme='dark'] .hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(201, 162, 39, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(201, 162, 39, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 60% 80%, rgba(60, 50, 20, 0.15) 0%, transparent 50%),
+    var(--surface);
+}
+
+/* ─── Animated gradient line ────────────────────────────────── */
+.accent-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent) 30%,
+    var(--color-accent-light) 70%,
+    transparent
+  );
+}
+
+/* ─── Card hover glow ───────────────────────────────────────── */
+.card-glow {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease;
+}
+
+.card-glow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(201, 162, 39, 0.08);
+  border-color: var(--color-accent) !important;
+}
+
+/* ─── Text reveal animation ─────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-fade-up-delay-1 { animation-delay: 0.15s; opacity: 0; }
+.animate-fade-up-delay-2 { animation-delay: 0.3s; opacity: 0; }
+.animate-fade-up-delay-3 { animation-delay: 0.45s; opacity: 0; }
+.animate-fade-up-delay-4 { animation-delay: 0.6s; opacity: 0; }
+
+/* ─── Mobile menu slide ─────────────────────────────────────── */
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.mobile-menu-enter {
+  animation: slideInRight 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* ─── Lightbox entrance ─────────────────────────────────────── */
+@keyframes lightboxIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.lightbox-enter {
+  animation: lightboxIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* ─── Slow pulse for scroll indicator ───────────────────────── */
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 2.5s ease-in-out infinite;
+}
+
+/* ─── Section subtle separator glow ─────────────────────────── */
+.section-fade {
+  position: relative;
+}
+
+/* ─── Performance card image shimmer on load ─────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.img-loading {
+  background: linear-gradient(
+    90deg,
+    var(--surface-muted) 25%,
+    var(--surface-elevated) 50%,
+    var(--surface-muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ─── Line clamp utility ────────────────────────────────────── */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+/* ─── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

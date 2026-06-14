@@ -1,40 +1,95 @@
-import React from 'react';
-import SectionTitle from "../components/SectionTitle";
-
-// Dummy media data
-const mediaItems = [
-  { title: "Performance 1", link: "#" },
-  { title: "Music Video 1", link: "#" },
-  { title: "Performance 2", link: "#" },
-  { title: "Music Video 2", link: "#" },
-  { title: "Performance 3", link: "#" },
-  { title: "Music Video 3", link: "#" },
-];
+import { useState } from 'react';
+import PageLayout from '../components/ui/PageLayout';
+import SectionTitle from '../components/SectionTitle';
+import ScrollReveal from '../components/ui/ScrollReveal';
+import Lightbox from '../components/ui/Lightbox';
+import PerformanceCard, { YouTubeEmbed } from '../components/PerformanceCard';
+import { performances, performanceCategories } from '../data/performances';
 
 export default function AudioVisual() {
-  return (
-    <section className="bg-black py-32 px-6 min-h-screen flex flex-col items-center text-center">
-      <SectionTitle
-        title="Audio / Visual"
-        subtitle="Performances, music videos & visual storytelling"
-      />
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [activePerformance, setActivePerformance] = useState(null);
 
-      <div className="mt-12 grid md:grid-cols-3 gap-8 justify-items-center w-full max-w-7xl">
-        {mediaItems.map((item, index) => (
+  const filtered =
+    activeCategory === 'all'
+      ? performances
+      : performances.filter((p) => p.type === activeCategory);
+
+  return (
+    <PageLayout fullWidth>
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <SectionTitle
+          title="Performances"
+          subtitle="Live stages, music videos, and visual storytelling from Sounds of Kolachi and Ahsan Bari"
+        />
+
+        {/* Category filter */}
+        <ScrollReveal>
           <div
-            key={index}
-            className="aspect-video w-full md:w-64 bg-dark2 border border-white/10 flex flex-col items-center justify-center rounded-lg hover:scale-105 transition-transform"
+            className="flex flex-wrap justify-center gap-2 mb-14"
+            role="tablist"
+            aria-label="Filter performances by type"
           >
-            <span className="text-gray-300 mb-2">{item.title}</span>
-            <a
-              href={item.link}
-              className="bg-gold text-black px-4 py-2 rounded font-heading hover:scale-105 transition-transform"
-            >
-              Watch
-            </a>
+            {performanceCategories.map((cat) => (
+              <button
+                key={cat.id}
+                role="tab"
+                aria-selected={activeCategory === cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-5 py-2.5 text-xs uppercase tracking-[0.15em] font-medium border transition-all duration-300 ${
+                  activeCategory === cat.id
+                    ? 'bg-accent text-[#0a0a0a] border-accent shadow-sm shadow-accent/20'
+                    : 'border-border text-foreground-muted hover:border-accent hover:text-accent'
+                }`}
+              >
+                {cat.label}
+                {cat.id !== 'all' && (
+                  <span className="ml-2 opacity-60">
+                    ({performances.filter((p) => p.type === cat.id).length})
+                  </span>
+                )}
+              </button>
+            ))}
           </div>
-        ))}
+        </ScrollReveal>
       </div>
-    </section>
+
+      {/* Performance grid */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          {filtered.map((perf, i) => (
+            <ScrollReveal key={perf.id} delay={i * 0.05}>
+              <PerformanceCard
+                performance={perf}
+                onWatch={setActivePerformance}
+                index={i}
+              />
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {filtered.length === 0 && (
+          <p className="text-center text-foreground-muted py-20">
+            No performances found in this category.
+          </p>
+        )}
+      </div>
+
+      {/* YouTube lightbox player */}
+      <Lightbox
+        isOpen={!!activePerformance}
+        onClose={() => setActivePerformance(null)}
+        title={activePerformance?.title}
+        wide
+      >
+        {activePerformance && (
+          <YouTubeEmbed
+            videoId={activePerformance.videoId}
+            startTime={activePerformance.startTime}
+            title={activePerformance.title}
+          />
+        )}
+      </Lightbox>
+    </PageLayout>
   );
 }
