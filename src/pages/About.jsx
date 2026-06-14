@@ -11,6 +11,8 @@ const skills = [
   { icon: Award, label: 'Live Production' },
 ];
 
+const ABOUT_IMAGE = `${import.meta.env.BASE_URL}images/about.jpg`;
+
 export default function About() {
   return (
     <PageLayout>
@@ -24,9 +26,13 @@ export default function About() {
         <ScrollReveal>
           <div className="relative">
             <div className="aspect-[4/5] bg-surface-muted border border-border overflow-hidden">
-              <div className="w-full h-full hero-mesh flex items-center justify-center">
-                <span className="font-heading text-8xl text-accent/20 italic">AB</span>
-              </div>
+              <img
+                src={ABOUT_IMAGE}
+                alt="Ahsan Bari — composer, producer, and music educator"
+                className="w-full h-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 border border-accent/30 -z-10" aria-hidden="true" />
           </div>
