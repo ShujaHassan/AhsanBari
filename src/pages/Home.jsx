@@ -33,8 +33,7 @@ export default function Home() {
           </h1>
 
           <p className="animate-fade-up animate-fade-up-delay-2 mt-6 text-lg md:text-xl text-white/80 max-w-xl leading-relaxed">
-            Multidisciplinary artist and cultural curator bridging South Asian
-            traditions with contemporary global sound.
+            Artist, curator, and educational leader exploring new frameworks for South Asian artistic expression, pedagogy, and cultural exchange.
           </p>
 
           <p className="animate-fade-up animate-fade-up-delay-2 mt-3 text-sm uppercase tracking-[0.25em] text-accent/90">
@@ -127,7 +126,7 @@ export default function Home() {
               {projects.map((project, i) => (
                 <ScrollReveal key={project.id} delay={i * 0.1}>
                   <Link
-                    to="/projects"
+                    to={project.path || '/projects'}
                     className="group block p-8 md:p-10 bg-surface-elevated border border-border card-glow"
                   >
                     <span className="text-xs uppercase tracking-[0.2em] text-accent">

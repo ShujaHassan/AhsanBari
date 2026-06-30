@@ -12,6 +12,7 @@ const footerLinks = [
   { label: 'About', path: '/about' },
   { label: 'Projects', path: '/projects' },
   { label: 'Sounds of Kolachi', path: '/sounds-of-kolachi' },
+  { label: 'Trance of Darvesh', path: '/trance-of-darvesh' },
   { label: 'Ruzhn', path: '/ruzhn' },
   { label: 'Contact', path: '/contact' },
 ];

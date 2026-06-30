@@ -2,6 +2,7 @@ export const navLinks = [
   { label: 'About', path: '/about' },
   { label: 'Projects', path: '/projects' },
   { label: 'Kolachi', path: '/sounds-of-kolachi' },
+  { label: 'Darvesh', path: '/trance-of-darvesh' },
   { label: 'Ruzhn', path: '/ruzhn' },
   { label: 'Academia', path: '/academia' },
   { label: 'Media', path: '/audio-visual' },
