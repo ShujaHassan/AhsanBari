@@ -44,29 +44,6 @@ export default function SoundsOfKolachi() {
         </div>
       </ScrollReveal>
 
-      {/* Collaborators */}
-      <ScrollReveal>
-        <div className="mb-20">
-          <h2 className="font-heading text-2xl md:text-3xl text-foreground text-center mb-3">
-            Collaborators
-          </h2>
-          <p className="text-center text-foreground-muted text-sm max-w-xl mx-auto mb-10">
-            Musicians, composers, vocalists, and artists from across Pakistan and
-            around the world
-          </p>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 max-w-4xl mx-auto">
-            {soundsOfKolachi.collaborators.map((name) => (
-              <span
-                key={name}
-                className="text-sm text-foreground-muted hover:text-accent transition-colors"
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </ScrollReveal>
-
       {/* Links */}
       <ScrollReveal>
         <div className="text-center p-12 border border-border bg-surface-muted">
