@@ -9,6 +9,12 @@ export const soundsOfKolachi = {
   ],
   collaboration:
     'Sounds of Kolachi has collaborated with Trance of Darvesh—a Sufi-inspired musical project exploring spiritual ecstasy through voice, sarangi, and contemporary arrangement.',
+  team: [
+    { name: 'Ahsan Bari', role: 'Founder' },
+    { name: 'Nimra Rafiq', role: 'Singer' },
+    { name: 'Quaid Ahmed', role: 'Musician' },
+    { name: 'Gul Sarani', role: 'Sarangi Player' },
+  ],
   links: [
     {
       label: 'Spotify',
@@ -36,12 +42,6 @@ export const tranceOfDarvesh = {
     'Trance of Darvesh is a collaborative musical project born from the shared vision of Sounds of Kolachi and Ahsan Bari, exploring the mystical traditions of Sufi poetry and devotional music through a contemporary lens.',
     'Drawing on the spiritual intensity of qawwali, the lyrical depth of regional folk, and the immersive textures of modern production, Trance of Darvesh creates sonic spaces where ancient wisdom meets present-day expression. The project channels the ecstatic energy of the darvesh—the wandering seeker—into performances that invite listeners into states of reflection, devotion, and transcendence.',
     'In close creative partnership with Sounds of Kolachi, Trance of Darvesh extends the collective\'s exploration of identity, spirituality, and coexistence, offering a focused meditation on the sacred through voice, sarangi, and ensemble arrangement.',
-  ],
-  team: [
-    { name: 'Ahsan Bari', role: 'Founder' },
-    { name: 'Nimra Rafiq', role: 'Singer' },
-    { name: 'Quaid Ahmed', role: 'Musician' },
-    { name: 'Gul Sarani', role: 'Sarangi Player' },
   ],
   collaborators: [
     'Waqas Hussain',

@@ -44,6 +44,39 @@ export default function SoundsOfKolachi() {
         </div>
       </ScrollReveal>
 
+      {/* Team */}
+      <ScrollReveal>
+        <div className="text-center mb-14">
+          <h2 className="font-heading text-3xl md:text-4xl text-foreground">
+            Team
+          </h2>
+          <p className="mt-3 text-foreground-muted max-w-xl mx-auto">
+            The artists shaping the sound of Sounds of Kolachi
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-20">
+        {soundsOfKolachi.team.map((member, i) => (
+          <ScrollReveal key={member.name} delay={i * 0.1}>
+            <article className="p-8 bg-surface-elevated border border-border card-glow text-center h-full">
+              <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-gradient-to-br from-amber-900/60 to-stone-900/80 flex items-center justify-center">
+                <span className="font-heading text-xl text-white/50">
+                  {member.name
+                    .split(' ')
+                    .map((n) => n[0])
+                    .join('')}
+                </span>
+              </div>
+              <h3 className="font-heading text-xl text-foreground">{member.name}</h3>
+              <p className="text-xs text-accent mt-2 tracking-wide uppercase">
+                {member.role}
+              </p>
+            </article>
+          </ScrollReveal>
+        ))}
+      </div>
+
       {/* Links */}
       <ScrollReveal>
         <div className="text-center p-12 border border-border bg-surface-muted">
