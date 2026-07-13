@@ -1,19 +1,14 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import * as Icons from 'lucide-react';
 import PageLayout from '../components/ui/PageLayout';
 import SectionTitle from '../components/SectionTitle';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import { projects, projectCategories } from '../data/projects';
 
+// Set to true to show All / Ensembles / Curation filter tabs again
+const SHOW_CATEGORY_FILTER = false;
+
 export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const filtered =
-    activeCategory === 'all'
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
-
   return (
     <PageLayout>
       <SectionTitle
@@ -21,34 +16,29 @@ export default function Projects() {
         subtitle="Curated performances, collaborations & musical journeys"
       />
 
-      {/* Category filter */}
-      <ScrollReveal>
-        <div
-          className="flex flex-wrap justify-center gap-2 mb-14"
-          role="tablist"
-          aria-label="Filter projects by category"
-        >
-          {projectCategories.map((cat) => (
-            <button
-              key={cat.id}
-              role="tab"
-              aria-selected={activeCategory === cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`px-5 py-2 text-xs uppercase tracking-[0.15em] font-medium border transition-all duration-300 ${
-                activeCategory === cat.id
-                  ? 'bg-accent text-[#0a0a0a] border-accent'
-                  : 'border-border text-foreground-muted hover:border-accent hover:text-accent'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-      </ScrollReveal>
+      {SHOW_CATEGORY_FILTER && (
+        <ScrollReveal>
+          <div
+            className="flex flex-wrap justify-center gap-2 mb-14"
+            role="tablist"
+            aria-label="Filter projects by category"
+          >
+            {projectCategories.map((cat) => (
+              <button
+                key={cat.id}
+                role="tab"
+                className="px-5 py-2 text-xs uppercase tracking-[0.15em] font-medium border border-border text-foreground-muted"
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </ScrollReveal>
+      )}
 
       {/* Project grid */}
       <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-        {filtered.map((project, i) => {
+        {projects.map((project, i) => {
           const Icon = Icons[project.icon] || Icons.Music;
           const content = (
             <>
@@ -98,12 +88,6 @@ export default function Projects() {
           );
         })}
       </div>
-
-      {filtered.length === 0 && (
-        <p className="text-center text-foreground-muted py-16">
-          No projects found in this category.
-        </p>
-      )}
     </PageLayout>
   );
 }
