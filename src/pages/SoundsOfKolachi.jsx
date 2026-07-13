@@ -27,23 +27,6 @@ export default function SoundsOfKolachi() {
         </div>
       </ScrollReveal>
 
-      {/* Collaboration with Trance of Darvesh */}
-      <ScrollReveal>
-        <div className="max-w-3xl mx-auto mb-20 p-8 md:p-10 border border-accent/30 bg-surface-muted text-center">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-4">
-            Collaborative Project
-          </p>
-          <p className="text-foreground-muted text-base leading-relaxed">
-            {soundsOfKolachi.collaboration}
-          </p>
-          <div className="mt-6">
-            <Button to="/trance-of-darvesh" variant="secondary" size="sm">
-              Explore Trance of Darvesh
-            </Button>
-          </div>
-        </div>
-      </ScrollReveal>
-
       {/* Team */}
       <ScrollReveal>
         <div className="text-center mb-14">
@@ -76,6 +59,29 @@ export default function SoundsOfKolachi() {
           </ScrollReveal>
         ))}
       </div>
+
+      {/* Collaborators */}
+      <ScrollReveal>
+        <div className="mb-20">
+          <h2 className="font-heading text-2xl md:text-3xl text-foreground text-center mb-3">
+            Collaborators
+          </h2>
+          <p className="text-center text-foreground-muted text-sm max-w-xl mx-auto mb-10">
+            Musicians, composers, vocalists, and artists from across Pakistan and
+            around the world
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 max-w-4xl mx-auto">
+            {soundsOfKolachi.collaborators.map((name) => (
+              <span
+                key={name}
+                className="text-sm text-foreground-muted hover:text-accent transition-colors"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </ScrollReveal>
 
       {/* Links */}
       <ScrollReveal>

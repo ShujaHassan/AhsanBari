@@ -7,41 +7,11 @@ export const soundsOfKolachi = {
     'Their critically acclaimed debut album Elhaam, international performances, and appearances on major platforms have established the ensemble as pioneers of a musical language that is at once deeply rooted and unmistakably modern. At its heart, Sounds of Kolachi is a celebration of dialogue—between traditions and modernity, the sacred and the secular, the local and the universal.',
     'Since its inception, Sounds of Kolachi has brought together musicians, composers, vocalists, and artists from across Pakistan and around the world, evolving into one of South Asia\'s most ambitious and collaborative musical projects.',
   ],
-  collaboration:
-    'Sounds of Kolachi has collaborated with Trance of Darvesh—a Sufi-inspired musical project exploring spiritual ecstasy through voice, sarangi, and contemporary arrangement.',
   team: [
     { name: 'Ahsan Bari', role: 'Founder' },
     { name: 'Nimra Rafiq', role: 'Singer' },
     { name: 'Quaid Ahmed', role: 'Musician' },
     { name: 'Gul Sarani', role: 'Sarangi Player' },
-  ],
-  links: [
-    {
-      label: 'Spotify',
-      href: 'https://open.spotify.com/search/Sounds%20Of%20Kolachi',
-    },
-    {
-      label: 'YouTube',
-      href: 'https://www.youtube.com/@SoundsOfKolachi',
-    },
-    {
-      label: 'Instagram',
-      href: 'https://www.instagram.com/soundsofkolachi/',
-    },
-    {
-      label: 'Facebook',
-      href: 'https://www.facebook.com/soundsofkolachi',
-    },
-  ],
-};
-
-export const tranceOfDarvesh = {
-  title: 'Trance of Darvesh',
-  subtitle: 'A Sufi-inspired journey in collaboration with Sounds of Kolachi',
-  intro: [
-    'Trance of Darvesh is a collaborative musical project born from the shared vision of Sounds of Kolachi and Ahsan Bari, exploring the mystical traditions of Sufi poetry and devotional music through a contemporary lens.',
-    'Drawing on the spiritual intensity of qawwali, the lyrical depth of regional folk, and the immersive textures of modern production, Trance of Darvesh creates sonic spaces where ancient wisdom meets present-day expression. The project channels the ecstatic energy of the darvesh—the wandering seeker—into performances that invite listeners into states of reflection, devotion, and transcendence.',
-    'In close creative partnership with Sounds of Kolachi, Trance of Darvesh extends the collective\'s exploration of identity, spirituality, and coexistence, offering a focused meditation on the sacred through voice, sarangi, and ensemble arrangement.',
   ],
   collaborators: [
     'Waqas Hussain',
@@ -85,5 +55,33 @@ export const tranceOfDarvesh = {
     'Saima Zakir',
     'Zawar Ahmed',
     'Haider Chao',
+  ],
+  links: [
+    {
+      label: 'Spotify',
+      href: 'https://open.spotify.com/search/Sounds%20Of%20Kolachi',
+    },
+    {
+      label: 'YouTube',
+      href: 'https://www.youtube.com/@SoundsOfKolachi',
+    },
+    {
+      label: 'Instagram',
+      href: 'https://www.instagram.com/soundsofkolachi/',
+    },
+    {
+      label: 'Facebook',
+      href: 'https://www.facebook.com/soundsofkolachi',
+    },
+  ],
+};
+
+export const tranceOfDarvesh = {
+  title: 'Trance of Darvesh',
+  subtitle: 'Ahsan Bari in collaboration with Global Synk',
+  intro: [
+    'Trance of Darvesh is an immersive musical experience by Pakistani composer, vocalist, and producer Ahsan Bari, in collaboration with Global Synk, exploring the powerful convergence of Sufi philosophy, Electronic Dance Music (EDM), and Rock & Roll.',
+    'Rooted in the ecstatic traditions of Sufism and driven by the energy of contemporary electronic music and the raw spirit of rock, Trance of Darvesh creates transformative sonic experiences that blur the boundaries between concert, ritual, and collective celebration. Featuring soaring vocals, hypnotic electronic textures, driving rhythms, live instrumentation, and immersive performance elements, each presentation unfolds as a journey through transcendence, ecstasy, and human connection.',
+    'Rather than recreating tradition, Trance of Darvesh reimagines it—bridging ancient spiritual expression with contemporary musical languages to create a sound that is both deeply rooted and unmistakably modern.',
   ],
 };

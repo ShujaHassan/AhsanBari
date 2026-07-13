@@ -13,7 +13,7 @@ export const projects = [
     title: 'Trance of Darvesh',
     category: 'ensemble',
     description:
-      'A Sufi-inspired collaborative project with Sounds of Kolachi, exploring spiritual ecstasy through voice, sarangi, and ensemble arrangement.',
+      'An immersive musical experience by Ahsan Bari in collaboration with Global Synk — Sufi philosophy meets EDM and Rock & Roll.',
     icon: 'Sparkles',
     path: '/trance-of-darvesh',
   },
