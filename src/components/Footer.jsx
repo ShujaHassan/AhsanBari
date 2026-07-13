@@ -13,7 +13,7 @@ const footerLinks = [
   { label: 'Projects', path: '/projects' },
   { label: 'Sounds of Kolachi', path: '/sounds-of-kolachi' },
   { label: 'Trance of Darvesh', path: '/trance-of-darvesh' },
-  { label: 'Ruzhn', path: '/ruzhn' },
+  { label: 'Ruzhn', href: 'https://www.ruzhn.com/' },
   { label: 'Contact', path: '/contact' },
 ];
 
@@ -61,14 +61,25 @@ export default function Footer() {
                 Explore
               </h3>
               <ul className="space-y-3">
-                {footerLinks.map(({ label, path }) => (
-                  <li key={path}>
-                    <Link
-                      to={path}
-                      className="text-sm text-foreground-muted hover:text-accent transition-colors"
-                    >
-                      {label}
-                    </Link>
+                {footerLinks.map(({ label, path, href }) => (
+                  <li key={href || path}>
+                    {href ? (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-foreground-muted hover:text-accent transition-colors"
+                      >
+                        {label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={path}
+                        className="text-sm text-foreground-muted hover:text-accent transition-colors"
+                      >
+                        {label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

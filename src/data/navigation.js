@@ -3,7 +3,7 @@ export const navLinks = [
   { label: 'Projects', path: '/projects' },
   { label: 'Kolachi', path: '/sounds-of-kolachi' },
   { label: 'Darvesh', path: '/trance-of-darvesh' },
-  { label: 'Ruzhn', path: '/ruzhn' },
+  { label: 'Ruzhn', href: 'https://www.ruzhn.com/' },
   { label: 'Academia', path: '/academia' },
   { label: 'Media', path: '/audio-visual' },
 ];

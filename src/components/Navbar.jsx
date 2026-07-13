@@ -49,23 +49,35 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map(({ label, path }) => (
-              <Link
-                key={path}
-                to={path}
-                className={`relative px-4 py-2 text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-300 ${
-                  isActive(path)
-                    ? 'text-accent'
-                    : 'text-foreground-muted hover:text-foreground'
-                }`}
-                aria-current={isActive(path) ? 'page' : undefined}
-              >
-                {label}
-                {isActive(path) && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-px bg-accent" />
-                )}
-              </Link>
-            ))}
+            {navLinks.map(({ label, path, href }) =>
+              href ? (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative px-4 py-2 text-xs uppercase tracking-[0.15em] font-medium text-foreground-muted hover:text-foreground transition-colors duration-300"
+                >
+                  {label}
+                </a>
+              ) : (
+                <Link
+                  key={path}
+                  to={path}
+                  className={`relative px-4 py-2 text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-300 ${
+                    isActive(path)
+                      ? 'text-accent'
+                      : 'text-foreground-muted hover:text-foreground'
+                  }`}
+                  aria-current={isActive(path) ? 'page' : undefined}
+                >
+                  {label}
+                  {isActive(path) && (
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-px bg-accent" />
+                  )}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Desktop actions */}
@@ -129,21 +141,34 @@ export default function Navbar() {
             </div>
 
             <nav className="flex-1 px-6 py-8 flex flex-col gap-1" aria-label="Mobile navigation">
-              {navLinks.map(({ label, path }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  onClick={() => setMenuOpen(false)}
-                  className={`py-3 text-sm uppercase tracking-[0.15em] font-medium border-b border-border-subtle transition-colors ${
-                    isActive(path)
-                      ? 'text-accent'
-                      : 'text-foreground-muted hover:text-foreground'
-                  }`}
-                  aria-current={isActive(path) ? 'page' : undefined}
-                >
-                  {label}
-                </Link>
-              ))}
+              {navLinks.map(({ label, path, href }) =>
+                href ? (
+                  <a
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMenuOpen(false)}
+                    className="py-3 text-sm uppercase tracking-[0.15em] font-medium border-b border-border-subtle text-foreground-muted hover:text-foreground transition-colors"
+                  >
+                    {label}
+                  </a>
+                ) : (
+                  <Link
+                    key={path}
+                    to={path}
+                    onClick={() => setMenuOpen(false)}
+                    className={`py-3 text-sm uppercase tracking-[0.15em] font-medium border-b border-border-subtle transition-colors ${
+                      isActive(path)
+                        ? 'text-accent'
+                        : 'text-foreground-muted hover:text-foreground'
+                    }`}
+                    aria-current={isActive(path) ? 'page' : undefined}
+                  >
+                    {label}
+                  </Link>
+                )
+              )}
             </nav>
 
             <div className="px-6 py-8 border-t border-border">
