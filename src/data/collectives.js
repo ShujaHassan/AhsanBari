@@ -7,12 +7,6 @@ export const soundsOfKolachi = {
     'Their critically acclaimed debut album Elhaam, international performances, and appearances on major platforms have established the ensemble as pioneers of a musical language that is at once deeply rooted and unmistakably modern. At its heart, Sounds of Kolachi is a celebration of dialogue—between traditions and modernity, the sacred and the secular, the local and the universal.',
     'Since its inception, Sounds of Kolachi has brought together musicians, composers, vocalists, and artists from across Pakistan and around the world, evolving into one of South Asia\'s most ambitious and collaborative musical projects.',
   ],
-  team: [
-    { name: 'Ahsan Bari', role: 'Founder' },
-    { name: 'Nimra Rafiq', role: 'Singer' },
-    { name: 'Quaid Ahmed', role: 'Musician' },
-    { name: 'Gul Sarani', role: 'Sarangi Player' },
-  ],
   collaborators: [
     'Waqas Hussain',
     'Gul Muhammad',
