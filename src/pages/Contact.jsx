@@ -1,9 +1,18 @@
 import { useState } from 'react';
-import { Mail, MapPin, Send, Instagram, Youtube } from 'lucide-react';
+import { Mail, MapPin, Send, Instagram, Youtube, Download } from 'lucide-react';
 import PageLayout from '../components/ui/PageLayout';
 import SectionTitle from '../components/SectionTitle';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import Button from '../components/ui/Button';
+
+const enquiryTypes = [
+  'Music / Composition',
+  'Production',
+  'Academic / Educational',
+  'Curation',
+  'Commissions',
+  'Collaboration',
+];
 
 const socialLinks = [
   { icon: Instagram, label: 'Instagram', href: '#' },
@@ -11,8 +20,15 @@ const socialLinks = [
   { icon: Mail, label: 'Email', href: 'mailto:info@ahsanbari.com' },
 ];
 
+const CV_PATH = `${import.meta.env.BASE_URL}Ahsan-Bari-CV.pdf`;
+
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
@@ -24,7 +40,7 @@ export default function Contact() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
     );
-    const subject = encodeURIComponent(form.subject || 'Collaboration Inquiry');
+    const subject = encodeURIComponent(form.subject || 'Professional Enquiry');
     window.location.href = `mailto:info@ahsanbari.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
@@ -39,8 +55,26 @@ export default function Contact() {
         subtitle="Professional Enquiries · Contact Information · Social / Streaming Links"
       />
 
+      <ScrollReveal>
+        <div className="flex flex-wrap justify-center gap-2 mb-14 max-w-3xl mx-auto">
+          {enquiryTypes.map((type) => (
+            <button
+              key={type}
+              type="button"
+              onClick={() => setForm((prev) => ({ ...prev, subject: type }))}
+              className={`px-4 py-2 text-[10px] uppercase tracking-[0.14em] border transition-colors ${
+                form.subject === type
+                  ? 'border-accent text-accent'
+                  : 'border-border text-foreground-muted hover:border-accent hover:text-accent'
+              }`}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+      </ScrollReveal>
+
       <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-        {/* Contact info */}
         <div className="lg:col-span-2 space-y-8">
           <ScrollReveal>
             <p className="text-foreground-muted leading-relaxed">
@@ -83,6 +117,13 @@ export default function Contact() {
             </div>
           </ScrollReveal>
 
+          <ScrollReveal delay={0.15}>
+            <Button href={CV_PATH} download variant="secondary">
+              <Download size={16} className="mr-2" />
+              Download CV
+            </Button>
+          </ScrollReveal>
+
           <ScrollReveal delay={0.2}>
             <div>
               <p className="text-xs uppercase tracking-widest text-foreground-muted mb-4">
@@ -107,7 +148,6 @@ export default function Contact() {
           </ScrollReveal>
         </div>
 
-        {/* Contact form */}
         <ScrollReveal delay={0.15} className="lg:col-span-3">
           <form
             onSubmit={handleSubmit}
@@ -116,9 +156,7 @@ export default function Contact() {
           >
             {submitted ? (
               <div className="text-center py-12">
-                <p className="font-heading text-2xl text-foreground">
-                  Thank you!
-                </p>
+                <p className="font-heading text-2xl text-foreground">Thank you!</p>
                 <p className="mt-3 text-foreground-muted text-sm">
                   Your email client should open shortly. If it doesn&apos;t, reach
                   us directly at{' '}
@@ -138,7 +176,10 @@ export default function Contact() {
               <>
                 <div className="grid sm:grid-cols-2 gap-5 mb-5">
                   <div>
-                    <label htmlFor="name" className="block text-xs uppercase tracking-widest text-foreground-muted mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-xs uppercase tracking-widest text-foreground-muted mb-2"
+                    >
                       Name
                     </label>
                     <input
@@ -154,7 +195,10 @@ export default function Contact() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-xs uppercase tracking-widest text-foreground-muted mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-xs uppercase tracking-widest text-foreground-muted mb-2"
+                    >
                       Email
                     </label>
                     <input
@@ -172,8 +216,11 @@ export default function Contact() {
                 </div>
 
                 <div className="mb-5">
-                  <label htmlFor="subject" className="block text-xs uppercase tracking-widest text-foreground-muted mb-2">
-                    Subject
+                  <label
+                    htmlFor="subject"
+                    className="block text-xs uppercase tracking-widest text-foreground-muted mb-2"
+                  >
+                    Enquiry type
                   </label>
                   <input
                     id="subject"
@@ -182,12 +229,15 @@ export default function Contact() {
                     value={form.subject}
                     onChange={handleChange}
                     className={inputClass}
-                    placeholder="Collaboration, booking, inquiry..."
+                    placeholder="Music / Composition, Production, Academic..."
                   />
                 </div>
 
                 <div className="mb-8">
-                  <label htmlFor="message" className="block text-xs uppercase tracking-widest text-foreground-muted mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-xs uppercase tracking-widest text-foreground-muted mb-2"
+                  >
                     Message
                   </label>
                   <textarea
@@ -198,7 +248,7 @@ export default function Contact() {
                     value={form.message}
                     onChange={handleChange}
                     className={`${inputClass} resize-y min-h-[140px]`}
-                    placeholder="Tell us about your project or inquiry..."
+                    placeholder="Tell us about your project or enquiry..."
                   />
                 </div>
 
