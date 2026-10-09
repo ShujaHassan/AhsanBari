@@ -19,7 +19,7 @@ export default function AudioVisual() {
     <PageLayout fullWidth>
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <SectionTitle
-          title="Performances"
+          title="Media"
           subtitle="Live stages, music videos, and visual storytelling from Sounds of Kolachi and Ahsan Bari"
         />
 

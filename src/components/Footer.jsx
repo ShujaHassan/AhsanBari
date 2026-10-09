@@ -5,12 +5,13 @@ import ScrollReveal from './ui/ScrollReveal';
 const socialLinks = [
   { icon: Mail, href: 'mailto:info@ahsanbari.com', label: 'Email' },
   { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
+  { icon: Youtube, href: 'https://www.youtube.com/@SoundsOfKolachi', label: 'YouTube' },
 ];
 
 const footerLinks = [
   { label: 'Home', path: '/' },
   { label: 'Work', path: '/work' },
+  { label: 'Media', path: '/audio-visual' },
   { label: 'Academia', path: '/academia' },
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },

@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ChevronRight, ExternalLink, Play } from 'lucide-react';
 import HeroBackground from '../components/HeroBackground';
+import PerformanceCard, { YouTubeEmbed } from '../components/PerformanceCard';
 import Button from '../components/ui/Button';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import SectionTitle from '../components/SectionTitle';
+import Lightbox from '../components/ui/Lightbox';
 import { homeProjects } from '../data/projects';
+import { featuredPerformances } from '../data/performances';
 
 const practiceChain = [
   'Composition',
@@ -18,6 +22,8 @@ const practiceChain = [
 ];
 
 export default function Home() {
+  const [activePerformance, setActivePerformance] = useState(null);
+
   return (
     <>
       <section className="relative min-h-[100svh] flex items-center overflow-hidden">
@@ -50,8 +56,9 @@ export default function Home() {
             <Button to="/work" size="lg">
               Explore Work
             </Button>
-            <Button to="/about" variant="secondary" size="lg">
-              About
+            <Button to="/audio-visual" variant="secondary" size="lg">
+              <Play size={16} className="mr-2" />
+              Watch Performances
             </Button>
           </div>
         </div>
@@ -65,7 +72,40 @@ export default function Home() {
       </section>
 
       <div>
+        {/* Live Performances / Videos */}
         <section className="py-24 md:py-32 section-fade">
+          <div className="max-w-7xl mx-auto px-5 sm:px-8">
+            <SectionTitle
+              title="Live Performances"
+              subtitle="Experience Sounds of Kolachi on world stages — from the Kennedy Center to Joe's Pub"
+            />
+
+            <div className="grid sm:grid-cols-2 gap-5 md:gap-6">
+              {featuredPerformances.map((perf, i) => (
+                <ScrollReveal key={perf.id} delay={i * 0.08}>
+                  <PerformanceCard
+                    performance={perf}
+                    onWatch={setActivePerformance}
+                    index={i}
+                    variant={i === 0 ? 'featured' : 'grid'}
+                  />
+                </ScrollReveal>
+              ))}
+            </div>
+
+            <ScrollReveal>
+              <div className="mt-12 flex justify-center">
+                <Button to="/audio-visual" variant="ghost">
+                  View All Performances
+                  <ChevronRight size={16} className="ml-1" />
+                </Button>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Work */}
+        <section className="py-24 md:py-32 bg-surface-muted section-fade">
           <div className="max-w-7xl mx-auto px-5 sm:px-8">
             <SectionTitle
               title="Work"
@@ -135,7 +175,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-24 md:py-32 bg-surface-muted section-fade">
+        {/* Practice */}
+        <section className="py-24 md:py-32 section-fade">
           <div className="max-w-7xl mx-auto px-5 sm:px-8">
             <ScrollReveal>
               <div className="max-w-3xl mx-auto text-center">
@@ -149,7 +190,10 @@ export default function Home() {
                 </p>
                 <div className="flex flex-wrap justify-center gap-x-3 gap-y-2 mb-12">
                   {practiceChain.map((step, i) => (
-                    <span key={step} className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.14em] text-foreground-muted">
+                    <span
+                      key={step}
+                      className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.14em] text-foreground-muted"
+                    >
                       <span className="text-foreground">{step}</span>
                       {i < practiceChain.length - 1 && (
                         <span className="text-accent/50" aria-hidden="true">
@@ -172,6 +216,21 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      <Lightbox
+        isOpen={!!activePerformance}
+        onClose={() => setActivePerformance(null)}
+        title={activePerformance?.title}
+        wide
+      >
+        {activePerformance && (
+          <YouTubeEmbed
+            videoId={activePerformance.videoId}
+            startTime={activePerformance.startTime}
+            title={activePerformance.title}
+          />
+        )}
+      </Lightbox>
     </>
   );
 }

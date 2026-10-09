@@ -16,7 +16,7 @@ const enquiryTypes = [
 
 const socialLinks = [
   { icon: Instagram, label: 'Instagram', href: '#' },
-  { icon: Youtube, label: 'YouTube', href: '#' },
+  { icon: Youtube, label: 'YouTube', href: 'https://www.youtube.com/@SoundsOfKolachi' },
   { icon: Mail, label: 'Email', href: 'mailto:info@ahsanbari.com' },
 ];
 
