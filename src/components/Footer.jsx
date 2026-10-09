@@ -9,11 +9,10 @@ const socialLinks = [
 ];
 
 const footerLinks = [
+  { label: 'Home', path: '/' },
+  { label: 'Work', path: '/work' },
+  { label: 'Academia', path: '/academia' },
   { label: 'About', path: '/about' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'Sounds of Kolachi', path: '/sounds-of-kolachi' },
-  { label: 'Trance of Darvesh', path: '/trance-of-darvesh' },
-  { label: 'Ruzhn', href: 'https://www.ruzhn.com/' },
   { label: 'Contact', path: '/contact' },
 ];
 

@@ -52,8 +52,8 @@ export default function TranceOfDarvesh() {
             Explore more projects and collaborative work from Ahsan Bari.
           </p>
           <div className="mt-6">
-            <Button to="/projects" variant="secondary">
-              All Projects
+            <Button to="/work" variant="secondary">
+              All Work
             </Button>
           </div>
         </div>

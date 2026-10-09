@@ -28,8 +28,8 @@ export default function Academia() {
   return (
     <PageLayout>
       <SectionTitle
-        title="Academia & Publications"
-        subtitle="Teaching, mentorship & academic contribution"
+        title="Academia"
+        subtitle="Academic Leadership · Music Education · Teaching & Mentorship · Institutional Practice"
       />
 
       <ScrollReveal>

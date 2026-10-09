@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion as Motion } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import About from './pages/About';
-import Projects from './pages/Projects';
+import Work from './pages/Work';
 import SoundsOfKolachi from './pages/SoundsOfKolachi';
 import TranceOfDarvesh from './pages/TranceOfDarvesh';
 import Academia from './pages/Academia';
@@ -27,8 +27,9 @@ function AnimatedRoutes() {
       >
         <Routes location={location}>
           <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/projects" element={<Navigate to="/work" replace />} />
           <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
           <Route path="/sounds-of-kolachi" element={<SoundsOfKolachi />} />
           <Route path="/trance-of-darvesh" element={<TranceOfDarvesh />} />
           <Route path="/academia" element={<Academia />} />

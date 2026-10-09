@@ -1,34 +1,50 @@
-import { Award, BookOpen, Globe, Music } from 'lucide-react';
+import { Award, BookOpen, Download, Globe, Music } from 'lucide-react';
 import PageLayout from '../components/ui/PageLayout';
 import SectionTitle from '../components/SectionTitle';
 import ScrollReveal from '../components/ui/ScrollReveal';
+import Button from '../components/ui/Button';
 import { timeline } from '../data/timeline';
 
+const profileAreas = [
+  'Composition',
+  'Music Production',
+  'Music Direction',
+  'Artist Development',
+  'Performance',
+  'Curation',
+  'Music Education',
+  'Curriculum Development',
+  'Mentorship',
+  'Cultural Programming',
+  'Institutional Development',
+  'Cross-cultural Collaboration',
+];
+
 const skills = [
-  { icon: Music, label: 'Composition & Arrangement' },
-  { icon: Globe, label: 'Cultural Curation' },
+  { icon: Music, label: 'Composition & Production' },
+  { icon: Globe, label: 'Curation & Cultural Exchange' },
   { icon: BookOpen, label: 'Music Education' },
-  { icon: Award, label: 'Live Production' },
+  { icon: Award, label: 'Institutional Practice' },
 ];
 
 const ABOUT_IMAGE = `${import.meta.env.BASE_URL}images/about.jpg`;
+const CV_PATH = `${import.meta.env.BASE_URL}Ahsan-Bari-CV.pdf`;
 
 export default function About() {
   return (
     <PageLayout>
       <SectionTitle
-        title="About Ahsan Bari"
-        subtitle="Composer, Producer, Educator & Cultural Curator"
+        title="About"
+        subtitle="Biography · Professional Profile · CV"
       />
 
-      {/* Story section — split layout */}
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-24 md:mb-32">
         <ScrollReveal>
           <div className="relative">
             <div className="aspect-[4/5] bg-surface-muted border border-border overflow-hidden">
               <img
                 src={ABOUT_IMAGE}
-                alt="Ahsan Bari — composer, producer, and music educator"
+                alt="Ahsan Bari — composer, producer, educator and curator"
                 className="w-full h-full object-cover object-center"
                 loading="lazy"
                 decoding="async"
@@ -41,43 +57,68 @@ export default function About() {
         <ScrollReveal delay={0.15}>
           <div className="space-y-6 text-foreground-muted leading-relaxed text-base md:text-lg">
             <p>
-              Ahsan Bari is a multidisciplinary artist, music director, and cultural
-              curator working across music, theatre, film, and interdisciplinary
-              performance. Trained in North Indian classical music and Qawwali, his
-              practice is rooted in raga and tala systems while engaging Western
-              classical harmony, jazz, and contemporary forms. He is an alumnus of
-              Pakistan&apos;s National Academy of Performing Arts (NAPA).
+              Ahsan Bari is a Pakistani composer, producer, educator and curator whose
+              practice connects music-making with cultural programming and education.
             </p>
             <p>
-              He is the founder of Sounds of Kolachi, a pioneering South Asian ensemble
-              known for its collaborative and experimental approach, and has worked
-              across both academic and commercial platforms, including Coke Studio and
-              Pepsi Battle of the Bands.
+              His musical journey developed through Pakistan&apos;s underground music
+              scene and later through deeper engagement with South Asian classical
+              music, composition and contemporary musical practice.
             </p>
             <p>
-              Ahsan currently serves as Head of the Music Department and Director of
-              Special Programs at the Arts Council of Pakistan Karachi, where he leads
-              curriculum development, ensemble initiatives, and large-scale cultural
-              programming.
+              He founded Sounds of Kolachi in Karachi in 2014, developing the ensemble
+              into a distinctive contemporary project combining South Asian classical
+              traditions, Western harmony, improvisation and modern ensemble
+              composition.
             </p>
             <p>
-              With over 15 years of curatorial and performance experience, his work has
-              been presented internationally at venues such as the John F. Kennedy
-              Center, Savannah Music Festival, Bharat Rang Mahotsav, Joe&apos;s Pub, and
-              leading academic institutions. Informed by philosophy and spirituality,
-              Ahsan&apos;s work focuses on building sustainable music ecosystems and
-              fostering meaningful artistic exchange across cultures.
+              Alongside composition and performance, Bari has developed an extensive
+              practice in music production and artist development across independent
+              music, film, television, theatre, commercial collaborations and emerging
+              artist platforms.
             </p>
+            <p>
+              His curatorial work includes Southasia Ensemble, Mukalma, PAS Awards and
+              Sound Spirit, while his academic practice encompasses music education,
+              curriculum development, mentorship, workshops, masterclasses, student
+              development and institutional programming.
+            </p>
+            <p>
+              Across these fields, Bari&apos;s practice is centred on building musical
+              ecosystems: creating music, developing artists, building platforms,
+              teaching musicians, developing audiences and creating spaces for cultural
+              exchange.
+            </p>
+
+            <div className="pt-4">
+              <Button href={CV_PATH} download size="lg">
+                <Download size={16} className="mr-2" />
+                Download CV
+              </Button>
+            </div>
           </div>
         </ScrollReveal>
       </div>
 
-      {/* Skills grid */}
+      {/* Professional Profile */}
       <ScrollReveal>
-        <h3 className="font-heading text-3xl md:text-4xl text-foreground text-center mb-12">
-          Expertise
+        <h3 className="font-heading text-3xl md:text-4xl text-foreground text-center mb-4">
+          Professional Profile
         </h3>
+        <p className="text-center text-foreground-muted mb-12 max-w-lg mx-auto">
+          Areas of practice across music, education and cultural programming.
+        </p>
       </ScrollReveal>
+
+      <div className="flex flex-wrap justify-center gap-3 mb-24 md:mb-32 max-w-4xl mx-auto">
+        {profileAreas.map((area, i) => (
+          <ScrollReveal key={area} delay={i * 0.03}>
+            <span className="inline-block px-4 py-2 text-xs uppercase tracking-[0.12em] border border-border text-foreground-muted">
+              {area}
+            </span>
+          </ScrollReveal>
+        ))}
+      </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24 md:mb-32">
         {skills.map((skill, i) => (
@@ -141,4 +182,3 @@ export default function About() {
     </PageLayout>
   );
 }
-

@@ -35,8 +35,8 @@ export default function Contact() {
   return (
     <PageLayout>
       <SectionTitle
-        title="Contact & Collaboration"
-        subtitle="Bookings, collaborations & inquiries"
+        title="Contact"
+        subtitle="Professional Enquiries · Contact Information · Social / Streaming Links"
       />
 
       <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">

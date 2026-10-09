@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { navLinks, ctaLink } from '../data/navigation';
+import { navLinks } from '../data/navigation';
 import { useTheme } from '../context/ThemeContext';
 import { useScrollLock } from '../hooks/useScrollLock';
-import Button from './ui/Button';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -89,10 +88,6 @@ export default function Navbar() {
             >
               {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </button>
-
-            <Button to={ctaLink.path} size="sm">
-              {ctaLink.label}
-            </Button>
           </div>
 
           {/* Mobile toggle */}
@@ -171,11 +166,6 @@ export default function Navbar() {
               )}
             </nav>
 
-            <div className="px-6 py-8 border-t border-border">
-              <Button to={ctaLink.path} className="w-full" size="md" onClick={() => setMenuOpen(false)}>
-                {ctaLink.label}
-              </Button>
-            </div>
           </div>
         </div>
       )}
