@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronRight, ExternalLink, Play } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import HeroBackground from '../components/HeroBackground';
 import PerformanceCard, { YouTubeEmbed } from '../components/PerformanceCard';
 import Button from '../components/ui/Button';
@@ -56,9 +56,8 @@ export default function Home() {
             <Button to="/work" size="lg">
               Explore Work
             </Button>
-            <Button to="/audio-visual" variant="secondary" size="lg">
-              <Play size={16} className="mr-2" />
-              Watch Performances
+            <Button to="/about" variant="secondary" size="lg">
+              About
             </Button>
           </div>
         </div>
@@ -96,8 +95,8 @@ export default function Home() {
             <ScrollReveal>
               <div className="mt-12 flex justify-center">
                 <Button to="/audio-visual" variant="ghost">
-                  View All Performances
-                  <ChevronRight size={16} className="ml-1" />
+                  More Videos
+                  <ArrowRight size={14} className="ml-2" />
                 </Button>
               </div>
             </ScrollReveal>
